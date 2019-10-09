@@ -32,5 +32,18 @@ FROM Orders o, Customers c, Employees e
 WHERE o.CustomerID = c.CustomerID and o.EmployeeID = e.EmployeeID
 ```
 ### (Stretch)  Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 9 records.
+```SQL
+SELECT DISTINCT c.CategoryName, COUNT(*) as NUMBER_OF_PRODUCTS 
+from Products p, Categories c
+WHERE c.CategoryID = p.CategoryID 
+GROUP BY c.CategoryName
+```
 
 ### (Stretch) Display OrderID and a  column called ItemCount that shows the total number of products placed on the order. Shows 196 records. 
+```SQL
+SELECT ord.OrderID, SUM(od.Quantity) as PRODUCTS_ORDERED 
+from Orders ord 
+LEFT JOIN OrderDetails od 
+ON ord.OrderID = od.OrderID 
+GROUP BY ord.OrderID
+```
